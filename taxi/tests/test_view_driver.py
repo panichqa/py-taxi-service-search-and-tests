@@ -27,4 +27,3 @@ class PrivateDriverTest(TestCase):
         all_drivers = Driver.objects.all()
         self.assertEqual(all_drivers.count(), 1)
         self.assertTemplateUsed(test_response, "taxi/driver_list.html")
-

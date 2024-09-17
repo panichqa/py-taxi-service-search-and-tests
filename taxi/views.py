@@ -1,16 +1,19 @@
-from lib2to3.fixes.fix_input import context
-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.template.defaultfilters import title
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Driver, Car, Manufacturer
-from .forms import DriverCreationForm, DriverLicenseUpdateForm, CarForm, DriverSearchForm, CarSearchForm, \
+from .forms import (
+    DriverCreationForm,
+    DriverLicenseUpdateForm,
+    CarForm,
+    DriverSearchForm,
+    CarSearchForm,
     ManufacturerSearchForm
+)
 
 
 @login_required
@@ -56,6 +59,7 @@ class ManufacturerListView(LoginRequiredMixin, generic.ListView):
                 name__icontains=form.cleaned_data["name"]
             )
         return queryset
+
 
 class ManufacturerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Manufacturer
@@ -138,6 +142,7 @@ class DriverListView(LoginRequiredMixin, generic.ListView):
                 username__icontains=form.cleaned_data["username"]
             )
         return queryset
+
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
     model = Driver
