@@ -36,7 +36,9 @@ class FormTests(TestCase):
     def test_manufacturer_search_results(self):
         form = ManufacturerSearchForm(data={"name": "Nissan"})
         self.assertTrue(form.is_valid())
-        results = Manufacturer.objects.filter(name__icontains=form.cleaned_data["name"])
+        results = Manufacturer.objects.filter(
+            name__icontains=form.cleaned_data["name"]
+        )
         self.assertIn(self.manufacturer, results)
 
     def test_driver_creation_form_with_all_data_is_valid(self):
@@ -73,5 +75,7 @@ class FormTests(TestCase):
     def test_driver_search_results(self):
         form = DriverSearchForm(data={"username": "driver1"})
         self.assertTrue(form.is_valid())
-        results = get_user_model().objects.filter(username__icontains=form.cleaned_data["username"])
+        results = get_user_model().objects.filter(
+            username__icontains=form.cleaned_data["username"]
+        )
         self.assertIn(self.driver, results)
